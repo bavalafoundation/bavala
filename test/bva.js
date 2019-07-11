@@ -2,6 +2,7 @@ const truffleAssert  = require('truffle-assertions');
 const BVA            = artifacts.require('BVA');
 const BVAFounders    = artifacts.require('BVAFounders');
 const BVATeamMembers = artifacts.require('BVATeamMembers');
+const BVATokenHolder = artifacts.require('BVATokenHolder');
 
 function advanceTime(time) {
     return new Promise((resolve, reject) => {
@@ -311,6 +312,133 @@ contract('BVA', accounts => {
             })
             .then(amount => {
                 return bvaMembers.withdrawEther.sendTransaction(
+                    web3.utils.toWei('0.01', 'ether')
+                )
+            })
+            .then(resp => {
+                assert.equal(
+                    resp.receipt.status,
+                    true,
+                    'Receipt status should be true'
+                )
+            })
+        })
+    })
+
+    describe('Testing BVATokenHolder', () => {
+        let tokenHolder;
+        it('Testing deploy BVATokenHolder Contract', () => {
+            return BVA.deployed()
+            .then(instance => {
+                return BVATokenHolder.new(instance.address, 'Testing')
+            })
+            .then(instance => {
+                tokenHolder = instance;
+            })
+        })
+
+        it('Should have name call Testing', () => {
+            return tokenHolder.name.call()
+            .then(name => {
+                assert.equal(
+                    name,
+                    'Testing',
+                    'Name is incorrect'
+                )
+            })
+        })
+
+        it('Issueing 1,260,000 BVA to BVATokenHolder Contract', () => {
+            return BVA.deployed()
+            .then(instance => {
+                return instance.sendBVA.sendTransaction(
+                    tokenHolder.address,
+                    web3.utils.toWei('1260000', 'ether')
+                )
+            })
+            .then(res => {
+                assert.equal(
+                    res.receipt.status,
+                    1,
+                    'Receipt status should be 1'
+                )
+            })
+        })
+
+        it('BVATokenHolder BVA balance should have 1,260,000 BVA', () => {
+            return BVA.deployed()
+            .then(instance => {
+                return instance.balanceOf.call(tokenHolder.address)
+            })
+            .then(amount   => {
+                assert.equal(
+                    amount.toString(),
+                    web3.utils.toWei('1260000', 'ether'),
+                    `BVATokenHolder should have 1,260,000 BVA`
+                )
+            })
+        })
+
+        it('BVATokenHolder BVA can be transferred out', () => {
+            return truffleAssert.passes(
+                tokenHolder.transferTokens.sendTransaction(
+                    accounts[2],
+                    web3.utils.toWei('10', 'ether')
+                ),
+                'Transfer token should pass.'
+            )
+        })
+
+        it('BVATokenHolder BVA balance should have 1,259,990 BVA', () => {
+            return BVA.deployed()
+            .then(instance => {
+                return instance.balanceOf.call(tokenHolder.address)
+            })
+            .then(amount   => {
+                assert.equal(
+                    amount.toString(),
+                    web3.utils.toWei('1259990', 'ether'),
+                    `BVATokenHolder should have 1,259,990 BVA`
+                )
+            })
+        })
+
+        it('BVATokenHolder BVA transfer more than it has should fail', () => {
+            return truffleAssert.fails(
+                tokenHolder.transferTokens.sendTransaction(
+                    accounts[2],
+                    web3.utils.toWei('1260000', 'ether')
+                ),
+                truffleAssert.ErrorType.REVERT
+            )
+        })
+
+        it('Testing send ETH into BVATokenHolder', () => {
+            let bal;
+            return web3.eth.sendTransaction({
+                value : web3.utils.toWei('0.01', 'ether'),
+                from  : accounts[0],
+                to    : tokenHolder.address
+            })
+            .then(tx => web3.eth.getTransactionReceipt(tx.transactionHash))
+            .then(receipt => {
+                assert.equal(
+                    receipt.status,
+                    true,
+                    'Unable to send ETH'
+                )
+                return web3.eth.getBalance(tokenHolder.address)
+            })
+            .then(amount => {
+                assert.equal(
+                    amount.toString(),
+                    web3.utils.toWei('0.01', 'ether'),
+                    'Balance should be 0.01 ETH'
+                )
+                return web3.eth.getBalance(accounts[0])
+            })
+            .then(amount => {
+                return tokenHolder.withdrawEther.sendTransaction(
                     web3.utils.toWei('0.01', 'ether')
                 )
             })

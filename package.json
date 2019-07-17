@@ -7,11 +7,13 @@
     "test": "test"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build-contracts": "sol-merger \"./contracts/BGT.sol\" ."
   },
   "author": "Jay <jay@pentajeu.com>",
   "license": "ISC",
   "devDependencies": {
+    "sol-merger": "^0.1.4",
     "truffle-assertions": "^0.8.2"
   },
   "dependencies": {

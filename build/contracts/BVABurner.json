@@ -1,0 +1,117 @@
+{
+  "contractName": "BVABurner",
+  "abi": [],
+  "metadata": "{\"compiler\":{\"version\":\"0.5.0+commit.1d4f565a\"},\"language\":\"Solidity\",\"output\":{\"abi\":[],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/Users/jaylim/truffle/bavala/contracts/BVABurner.sol\":\"BVABurner\"},\"evmVersion\":\"byzantium\",\"libraries\":{},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/jaylim/truffle/bavala/contracts/BVABurner.sol\":{\"keccak256\":\"0x9585c5e13274f45d106e732ce06baf1b28474174487d801a00d6694ddfb852ff\",\"urls\":[\"bzzr://45a16c56435293d3cd975bac8ffa1c8a59000a121bc0f8599c9b04e120034951\"]}},\"version\":1}",
+  "bytecode": "0x6080604052348015600f57600080fd5b50603580601d6000396000f3fe6080604052600080fdfea165627a7a72305820bf7137ce2684517419d582a9d47acbf3ddd826aeb24cc4e20328eac36694f8c20029",
+  "deployedBytecode": "0x6080604052600080fdfea165627a7a72305820bf7137ce2684517419d582a9d47acbf3ddd826aeb24cc4e20328eac36694f8c20029",
+  "sourceMap": "291:23:1:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;291:23:1;;;;;;;",
+  "deployedSourceMap": "291:23:1:-;;;;;",
+  "source": "pragma solidity ^0.5.0;\n\n// ------------------------------------------------------------------------\n// This is BVA token burner contract. Ether or Tokens transferred to this\n// contract is no longer retrievable\n//\n// ------------------------------------------------------------------------\ncontract BVABurner {\n\n}\n",
+  "sourcePath": "/Users/jaylim/truffle/bavala/contracts/BVABurner.sol",
+  "ast": {
+    "absolutePath": "/Users/jaylim/truffle/bavala/contracts/BVABurner.sol",
+    "exportedSymbols": {
+      "BVABurner": [
+        309
+      ]
+    },
+    "id": 310,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 308,
+        "literals": [
+          "solidity",
+          "^",
+          "0.5",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:1"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 309,
+        "linearizedBaseContracts": [
+          309
+        ],
+        "name": "BVABurner",
+        "nodeType": "ContractDefinition",
+        "nodes": [],
+        "scope": 310,
+        "src": "291:23:1"
+      }
+    ],
+    "src": "0:315:1"
+  },
+  "legacyAST": {
+    "absolutePath": "/Users/jaylim/truffle/bavala/contracts/BVABurner.sol",
+    "exportedSymbols": {
+      "BVABurner": [
+        309
+      ]
+    },
+    "id": 310,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 308,
+        "literals": [
+          "solidity",
+          "^",
+          "0.5",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:1"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 309,
+        "linearizedBaseContracts": [
+          309
+        ],
+        "name": "BVABurner",
+        "nodeType": "ContractDefinition",
+        "nodes": [],
+        "scope": 310,
+        "src": "291:23:1"
+      }
+    ],
+    "src": "0:315:1"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.5.0+commit.1d4f565a.Emscripten.clang"
+  },
+  "networks": {
+    "1": {
+      "events": {},
+      "links": {},
+      "address": "0x02f153cE67fd81C42687079F72893a496DDbCDF3",
+      "transactionHash": "0xa3c41fcaecd95ca3a329cbcdcdc1cbff18ed88776735a3ecb648ce0dc521dc29"
+    },
+    "5777": {
+      "events": {},
+      "links": {},
+      "address": "0x3cACFd1e3fbCa51073Df8cFFe3CA0CBbC72e3716",
+      "transactionHash": "0x127fdcb26f5c489ad1b7b9cff5dac01d9cc0113dcfd53c9f4a04c21644f38f1a"
+    }
+  },
+  "schemaVersion": "3.0.6",
+  "updatedAt": "2019-07-11T07:20:46.823Z",
+  "devdoc": {
+    "methods": {}
+  },
+  "userdoc": {
+    "methods": {}
+  }
+}
